@@ -49,6 +49,16 @@
   .navlinks a{ text-decoration:none; opacity:0.75; transition:opacity .2s; }
   .navlinks a:hover{ opacity:1; }
 
+  .disclosure-bar{
+    background:var(--navy); border-bottom:1px solid var(--line);
+    padding:9px 0; text-align:center;
+  }
+  .disclosure-bar .wrap{ display:block; }
+  .disclosure-bar p{
+    margin:0; font-size:12.5px; color:rgba(246,243,236,0.7); line-height:1.4;
+  }
+  .disclosure-bar a{ color:var(--gold); text-decoration:underline; }
+
   /* HERO */
   .hero{ padding:88px 0 64px; border-bottom:1px solid var(--line); }
   .eyebrow{ font-size:13px; font-weight:600; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:18px; }
@@ -194,6 +204,12 @@
   </div>
 </nav>
 
+<div class="disclosure-bar">
+  <div class="wrap">
+    <p>B1G Apparel contains affiliate links. We may earn a commission on qualifying purchases at no extra cost to you. <a href="/privacy.html">Learn more</a></p>
+  </div>
+</div>
+
 <header class="hero">
   <div class="wrap">
     <div class="eyebrow">Big Ten Conference · Fan Apparel</div>
@@ -237,7 +253,10 @@
       </div>
 
       <div class="sb-footer">
-        <div class="status-line" id="status-line">Make all three selections to find your gear.</div>
+        <div>
+          <div class="status-line" id="status-line">Make all three selections to find your gear.</div>
+          <div style="font-size:11px; color:var(--steel); margin-top:4px;">Product links are affiliate links — we may earn a commission.</div>
+        </div>
         <button class="btn btn-primary" id="find-btn" disabled>Find Gear</button>
       </div>
     </div>
