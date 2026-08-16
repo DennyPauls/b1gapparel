@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name='impact-site-verification' value='5c67e7c3-af13-4dcf-a278-ae0767d3c569'>
-<title>B1G Apparel — Gear Up For Your Team</title>
+<title>Lettermen Rack — Gear Up For Your Team</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
@@ -195,7 +194,7 @@
 
 <nav>
   <div class="wrap">
-    <div class="brand"><span class="num">B1G</span>&nbsp;APPAREL</div>
+    <div class="brand"><span class="num">LETTERMEN</span>&nbsp;RACK</div>
     <div class="navlinks">
       <a href="#picker">Pick Your Gear</a>
       <a href="#schools">Schools</a>
@@ -206,15 +205,15 @@
 
 <div class="disclosure-bar">
   <div class="wrap">
-    <p>B1G Apparel contains affiliate links. We may earn a commission on qualifying purchases at no extra cost to you. <a href="/privacy.html">Learn more</a></p>
+    <p>Lettermen Rack contains affiliate links. We may earn a commission on qualifying purchases at no extra cost to you. <a href="/privacy.html">Learn more</a></p>
   </div>
 </div>
 
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow">Big Ten Conference · Fan Apparel</div>
+    <div class="eyebrow">College Sports · Fan Apparel</div>
     <h1>Your school.<br>Your sport.<br><span>Your gear.</span></h1>
-    <p>Pick a school, a sport, and a category — B1G Apparel points you straight to officially licensed fan gear. No browsing eighteen team stores. One place, every school in the conference.</p>
+    <p>Pick a school, a sport, and a category — Lettermen Rack points you straight to officially licensed fan gear. No hunting across dozens of team stores. One place, every school.</p>
 
     <div class="scoreboard" id="picker">
       <div class="sb-head">
@@ -239,7 +238,8 @@
 
       <div class="sb-body">
         <div class="picker-group">
-          <div class="picker-title">01 — Choose your school</div>
+          <div class="picker-title">01 — Search your school</div>
+          <input type="text" id="school-search" placeholder="Start typing a school name…" style="width:100%; background:var(--navy-deep); border:1px solid var(--line); color:var(--cream); padding:11px 14px; border-radius:3px; font-size:14px; font-family:'Inter',sans-serif; margin-bottom:12px; box-sizing:border-box;">
           <div class="chip-grid" id="school-chips"></div>
         </div>
         <div class="picker-group">
@@ -273,12 +273,12 @@
       <div class="step">
         <div class="step-mark">01</div>
         <h3>Pick your team</h3>
-        <p>Choose from all eighteen Big Ten schools — pick a sport and a category of gear you're after.</p>
+        <p>Search any school across college sports — pick a sport and a category of gear you're after.</p>
       </div>
       <div class="step">
         <div class="step-mark">02</div>
         <h3>We point you to the source</h3>
-        <p>B1G Apparel links you directly to officially licensed product listings — we don't hold or ship inventory ourselves.</p>
+        <p>Lettermen Rack links you directly to officially licensed product listings — we don't hold or ship inventory ourselves.</p>
       </div>
       <div class="step">
         <div class="step-mark">03</div>
@@ -292,8 +292,8 @@
 <section class="section" id="schools">
   <div class="wrap">
     <div class="section-head">
-      <h2>All eighteen schools</h2>
-      <div class="tag">// conference-wide, one site</div>
+      <h2>Every school, one place</h2>
+      <div class="tag">// 80+ schools and growing</div>
     </div>
     <div class="school-grid" id="school-grid"></div>
   </div>
@@ -304,7 +304,7 @@
     <div class="waitlist-inner">
       <div>
         <div class="eyebrow" style="margin-bottom:12px;">Launching soon</div>
-        <h2>Get notified when B1G Apparel goes live.</h2>
+        <h2>Get notified when Lettermen Rack goes live.</h2>
       </div>
       <div>
         <form class="waitlist-form" id="waitlist-form">
@@ -321,37 +321,99 @@
 <footer>
   <div class="wrap">
     <div>
-      <div class="fbrand" style="margin-bottom:10px;">B1G APPAREL</div>
+      <div class="fbrand" style="margin-bottom:10px;">LETTERMEN RACK</div>
       <div style="display:flex; gap:18px; margin-bottom:14px;">
         <a href="/privacy.html" style="font-size:12px; color:var(--steel); text-decoration:none;">Privacy Policy</a>
         <a href="/terms.html" style="font-size:12px; color:var(--steel); text-decoration:none;">Terms of Use</a>
         <a href="/contact.html" style="font-size:12px; color:var(--steel); text-decoration:none;">Contact</a>
       </div>
     </div>
-    <div class="fine">B1G Apparel is an independent fan site and is not affiliated with, endorsed by, or sponsored by the Big Ten Conference or any member institution. As an affiliate, B1G Apparel may earn a commission on qualifying purchases made through links on this site, at no extra cost to you.</div>
+    <div class="fine">Lettermen Rack is an independent fan site and is not affiliated with, endorsed by, or sponsored by any school, conference, or athletic association. As an affiliate, Lettermen Rack may earn a commission on qualifying purchases made through links on this site, at no extra cost to you.</div>
   </div>
 </footer>
 
 <script>
   const schools = [
-    { name:"Illinois", conf:"Fighting Illini", color:"#E84A27" },
-    { name:"Indiana", conf:"Hoosiers", color:"#990000" },
-    { name:"Iowa", conf:"Hawkeyes", color:"#FFCD00" },
-    { name:"Maryland", conf:"Terrapins", color:"#E21833" },
-    { name:"Michigan", conf:"Wolverines", color:"#FFCB05" },
-    { name:"Michigan State", conf:"Spartans", color:"#18453B" },
-    { name:"Minnesota", conf:"Golden Gophers", color:"#FFCC33" },
-    { name:"Nebraska", conf:"Cornhuskers", color:"#E41C38" },
-    { name:"Northwestern", conf:"Wildcats", color:"#4E2A84" },
-    { name:"Ohio State", conf:"Buckeyes", color:"#BB0000" },
-    { name:"Oregon", conf:"Ducks", color:"#FEE123" },
-    { name:"Penn State", conf:"Nittany Lions", color:"#1E3A6D" },
-    { name:"Purdue", conf:"Boilermakers", color:"#CEB888" },
-    { name:"Rutgers", conf:"Scarlet Knights", color:"#CC0033" },
-    { name:"UCLA", conf:"Bruins", color:"#2D68C4" },
-    { name:"USC", conf:"Trojans", color:"#FFC72C" },
-    { name:"Washington", conf:"Huskies", color:"#B7A57A" },
-    { name:"Wisconsin", conf:"Badgers", color:"#C5050C" },
+    { name:"Alabama", conf:"SEC · Crimson Tide", color:"#9E1B32" },
+    { name:"Arkansas", conf:"SEC · Razorbacks", color:"#9D2235" },
+    { name:"Auburn", conf:"SEC · Tigers", color:"#0C2340" },
+    { name:"Florida", conf:"SEC · Gators", color:"#0021A5" },
+    { name:"Georgia", conf:"SEC · Bulldogs", color:"#BA0C2F" },
+    { name:"Kentucky", conf:"SEC · Wildcats", color:"#0033A0" },
+    { name:"LSU", conf:"SEC · Tigers", color:"#461D7C" },
+    { name:"Mississippi State", conf:"SEC · Bulldogs", color:"#660000" },
+    { name:"Missouri", conf:"SEC · Tigers", color:"#F1B82D" },
+    { name:"Ole Miss", conf:"SEC · Rebels", color:"#14213D" },
+    { name:"Oklahoma", conf:"SEC · Sooners", color:"#841617" },
+    { name:"South Carolina", conf:"SEC · Gamecocks", color:"#73000A" },
+    { name:"Tennessee", conf:"SEC · Volunteers", color:"#FF8200" },
+    { name:"Texas", conf:"SEC · Longhorns", color:"#BF5700" },
+    { name:"Texas A&M", conf:"SEC · Aggies", color:"#500000" },
+    { name:"Vanderbilt", conf:"SEC · Commodores", color:"#000000" },
+    { name:"Illinois", conf:"Big Ten · Fighting Illini", color:"#E84A27" },
+    { name:"Indiana", conf:"Big Ten · Hoosiers", color:"#990000" },
+    { name:"Iowa", conf:"Big Ten · Hawkeyes", color:"#FFCD00" },
+    { name:"Maryland", conf:"Big Ten · Terrapins", color:"#E21833" },
+    { name:"Michigan", conf:"Big Ten · Wolverines", color:"#FFCB05" },
+    { name:"Michigan State", conf:"Big Ten · Spartans", color:"#18453B" },
+    { name:"Minnesota", conf:"Big Ten · Golden Gophers", color:"#FFCC33" },
+    { name:"Nebraska", conf:"Big Ten · Cornhuskers", color:"#E41C38" },
+    { name:"Northwestern", conf:"Big Ten · Wildcats", color:"#4E2A84" },
+    { name:"Ohio State", conf:"Big Ten · Buckeyes", color:"#BB0000" },
+    { name:"Oregon", conf:"Big Ten · Ducks", color:"#FEE123" },
+    { name:"Penn State", conf:"Big Ten · Nittany Lions", color:"#1E3A6D" },
+    { name:"Purdue", conf:"Big Ten · Boilermakers", color:"#CEB888" },
+    { name:"Rutgers", conf:"Big Ten · Scarlet Knights", color:"#CC0033" },
+    { name:"UCLA", conf:"Big Ten · Bruins", color:"#2D68C4" },
+    { name:"USC", conf:"Big Ten · Trojans", color:"#FFC72C" },
+    { name:"Washington", conf:"Big Ten · Huskies", color:"#B7A57A" },
+    { name:"Wisconsin", conf:"Big Ten · Badgers", color:"#C5050C" },
+    { name:"Boston College", conf:"ACC · Eagles", color:"#98002E" },
+    { name:"California", conf:"ACC · Golden Bears", color:"#003262" },
+    { name:"Clemson", conf:"ACC · Tigers", color:"#F56600" },
+    { name:"Duke", conf:"ACC · Blue Devils", color:"#003087" },
+    { name:"Florida State", conf:"ACC · Seminoles", color:"#782F40" },
+    { name:"Georgia Tech", conf:"ACC · Yellow Jackets", color:"#B3A369" },
+    { name:"Louisville", conf:"ACC · Cardinals", color:"#AD0000" },
+    { name:"Miami", conf:"ACC · Hurricanes", color:"#F47321" },
+    { name:"NC State", conf:"ACC · Wolfpack", color:"#CC0000" },
+    { name:"North Carolina", conf:"ACC · Tar Heels", color:"#7BAFD4" },
+    { name:"Notre Dame", conf:"ACC · Fighting Irish", color:"#0C2340" },
+    { name:"Pittsburgh", conf:"ACC · Panthers", color:"#003594" },
+    { name:"SMU", conf:"ACC · Mustangs", color:"#C8102E" },
+    { name:"Stanford", conf:"ACC · Cardinal", color:"#8C1515" },
+    { name:"Syracuse", conf:"ACC · Orange", color:"#D44500" },
+    { name:"Virginia", conf:"ACC · Cavaliers", color:"#232D4B" },
+    { name:"Virginia Tech", conf:"ACC · Hokies", color:"#630031" },
+    { name:"Wake Forest", conf:"ACC · Demon Deacons", color:"#9E7E38" },
+    { name:"Arizona", conf:"Big 12 · Wildcats", color:"#AB0520" },
+    { name:"Arizona State", conf:"Big 12 · Sun Devils", color:"#8C1D40" },
+    { name:"Baylor", conf:"Big 12 · Bears", color:"#154734" },
+    { name:"BYU", conf:"Big 12 · Cougars", color:"#002E5D" },
+    { name:"Cincinnati", conf:"Big 12 · Bearcats", color:"#E00122" },
+    { name:"Colorado", conf:"Big 12 · Buffaloes", color:"#CFB87C" },
+    { name:"Houston", conf:"Big 12 · Cougars", color:"#C8102E" },
+    { name:"Iowa State", conf:"Big 12 · Cyclones", color:"#C8102E" },
+    { name:"Kansas", conf:"Big 12 · Jayhawks", color:"#0051BA" },
+    { name:"Kansas State", conf:"Big 12 · Wildcats", color:"#512888" },
+    { name:"Oklahoma State", conf:"Big 12 · Cowboys", color:"#FF7300" },
+    { name:"TCU", conf:"Big 12 · Horned Frogs", color:"#4D1979" },
+    { name:"Texas Tech", conf:"Big 12 · Red Raiders", color:"#CC0000" },
+    { name:"UCF", conf:"Big 12 · Knights", color:"#BA9B37" },
+    { name:"Utah", conf:"Big 12 · Utes", color:"#CC0000" },
+    { name:"West Virginia", conf:"Big 12 · Mountaineers", color:"#EAAA00" },
+    { name:"Boise State", conf:"Mountain West · Broncos", color:"#0033A0" },
+    { name:"San Diego State", conf:"Mountain West · Aztecs", color:"#A6192E" },
+    { name:"Air Force", conf:"Mountain West · Falcons", color:"#003087" },
+    { name:"Memphis", conf:"American · Tigers", color:"#003087" },
+    { name:"Tulane", conf:"American · Green Wave", color:"#006747" },
+    { name:"App State", conf:"Sun Belt · Mountaineers", color:"#000000" },
+    { name:"Coastal Carolina", conf:"Sun Belt · Chanticleers", color:"#006F71" },
+    { name:"Navy", conf:"Independent · Midshipmen", color:"#00205B" },
+    { name:"Army", conf:"Independent · Black Knights", color:"#000000" },
+    { name:"Harvard", conf:"Ivy League · Crimson", color:"#A51C30" },
+    { name:"Yale", conf:"Ivy League · Bulldogs", color:"#00356B" },
+    { name:"Princeton", conf:"Ivy League · Tigers", color:"#FF6600" },
   ];
 
   const sports = ["Football","Basketball","Baseball","Softball","Hockey","Soccer","Volleyball","Wrestling"];
@@ -389,6 +451,31 @@
   schools.forEach(s => makeChip(schoolChips, s.name, 'school', s.color));
   sports.forEach(s => makeChip(sportChips, s, 'sport', null));
   categories.forEach(c => makeChip(categoryChips, c, 'category', null));
+
+  function renderSchoolChips(query){
+    schoolChips.innerHTML = '';
+    const q = query.trim().toLowerCase();
+    let list = q ? schools.filter(s => s.name.toLowerCase().includes(q)) : schools.slice(0, 10);
+    list.slice(0, 24).forEach(s => {
+      makeChip(schoolChips, s.name, 'school', s.color);
+      if(s.name === state.school){
+        [...schoolChips.children].forEach(c => { if(c.textContent.trim() === s.name) c.classList.add('active'); });
+      }
+    });
+    if(!q){
+      const hint = document.createElement('div');
+      hint.style.cssText = 'font-size:12px; color:var(--steel); width:100%; margin-top:6px;';
+      hint.textContent = `Showing 10 of ${schools.length} schools — search to find yours.`;
+      schoolChips.appendChild(hint);
+    } else if(list.length === 0){
+      const hint = document.createElement('div');
+      hint.style.cssText = 'font-size:12px; color:var(--steel); width:100%;';
+      hint.textContent = 'No matches yet — keep typing.';
+      schoolChips.appendChild(hint);
+    }
+  }
+  renderSchoolChips('');
+  document.getElementById('school-search').addEventListener('input', (e) => renderSchoolChips(e.target.value));
 
   schools.forEach(s => {
     const tile = document.createElement('div');
