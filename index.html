@@ -20,19 +20,17 @@
     --steel:#79705F;
     --line: rgba(33,30,27,0.13);
     --grain-light:
-      radial-gradient(circle at 15% 20%, rgba(33,30,27,0.07) 1px, transparent 1.5px),
-      radial-gradient(circle at 55% 65%, rgba(33,30,27,0.06) 1px, transparent 1.5px),
-      radial-gradient(circle at 85% 35%, rgba(33,30,27,0.065) 1px, transparent 1.5px),
-      radial-gradient(circle at 35% 85%, rgba(33,30,27,0.05) 1px, transparent 1.5px),
-      radial-gradient(circle at 70% 10%, rgba(33,30,27,0.045) 1px, transparent 1.5px);
-    --grain-light-size: 19px 19px, 23px 23px, 17px 17px, 27px 27px, 21px 21px;
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,0.85) 0px, rgba(255,255,255,0) 1.6px),
+      radial-gradient(circle at 68% 68%, rgba(122,38,53,0.24) 0px, rgba(122,38,53,0) 2px),
+      radial-gradient(circle at 28% 32%, rgba(255,255,255,0.6) 0px, rgba(255,255,255,0) 1.4px),
+      radial-gradient(circle at 70% 66%, rgba(122,38,53,0.17) 0px, rgba(122,38,53,0) 1.8px);
+    --grain-light-size: 13px 13px, 13px 13px, 17px 17px, 17px 17px;
     --grain-dark:
-      radial-gradient(circle at 15% 20%, rgba(251,247,238,0.06) 1px, transparent 1.5px),
-      radial-gradient(circle at 55% 65%, rgba(251,247,238,0.05) 1px, transparent 1.5px),
-      radial-gradient(circle at 85% 35%, rgba(251,247,238,0.055) 1px, transparent 1.5px),
-      radial-gradient(circle at 35% 85%, rgba(251,247,238,0.045) 1px, transparent 1.5px),
-      radial-gradient(circle at 70% 10%, rgba(251,247,238,0.04) 1px, transparent 1.5px);
-    --grain-dark-size: 19px 19px, 23px 23px, 17px 17px, 27px 27px, 21px 21px;
+      radial-gradient(circle at 30% 30%, rgba(216,180,130,0.2) 0px, rgba(216,180,130,0) 1.6px),
+      radial-gradient(circle at 68% 68%, rgba(0,0,0,0.5) 0px, rgba(0,0,0,0) 2px),
+      radial-gradient(circle at 28% 32%, rgba(216,180,130,0.14) 0px, rgba(216,180,130,0) 1.4px),
+      radial-gradient(circle at 70% 66%, rgba(0,0,0,0.4) 0px, rgba(0,0,0,0) 1.8px);
+    --grain-dark-size: 13px 13px, 13px 13px, 17px 17px, 17px 17px;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -468,6 +466,9 @@
   const sports = ["Football","Basketball","Baseball","Softball","Hockey","Soccer","Volleyball","Wrestling"];
   const categories = ["Jerseys","Hoodies & Fleece","T-Shirts","Hats","Accessories"];
 
+  const featuredNames = ["Texas","Alabama","Georgia","Michigan","Ohio State","Notre Dame","LSU","Texas A&M","Oklahoma","Florida","Tennessee","Auburn","Clemson","USC","Penn State","Florida State","Oregon","Nebraska"];
+  const featuredSchools = featuredNames.map(n => schools.find(s => s.name === n)).filter(Boolean);
+
   const schoolChips = document.getElementById('school-chips');
   const sportChips = document.getElementById('sport-chips');
   const categoryChips = document.getElementById('category-chips');
@@ -504,7 +505,7 @@
   function renderSchoolChips(query){
     schoolChips.innerHTML = '';
     const q = query.trim().toLowerCase();
-    let list = q ? schools.filter(s => s.name.toLowerCase().includes(q)) : schools.slice(0, 10);
+    let list = q ? schools.filter(s => s.name.toLowerCase().includes(q)) : featuredSchools;
     list.slice(0, 24).forEach(s => {
       makeChip(schoolChips, s.name, 'school', s.color);
       if(s.name === state.school){
@@ -514,7 +515,7 @@
     if(!q){
       const hint = document.createElement('div');
       hint.style.cssText = 'font-size:12px; color:var(--steel); width:100%; margin-top:6px;';
-      hint.textContent = `Showing 10 of ${schools.length} schools — search to find yours.`;
+      hint.textContent = `Showing ${featuredSchools.length} of ${schools.length} schools — search to find yours.`;
       schoolChips.appendChild(hint);
     } else if(list.length === 0){
       const hint = document.createElement('div');
