@@ -22,6 +22,7 @@
     --team-accent: var(--brass);
     --team-accent-ink: var(--brass-ink);
     --team-on-accent: var(--ink-deep);
+    --team-tint: var(--panel-2);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -96,8 +97,9 @@
   .sb-head{
     display:flex; align-items:center; justify-content:space-between;
     padding:14px 24px;
-    background:var(--panel-2);
+    background:var(--team-tint);
     border-bottom:1px solid var(--line);
+    transition:background-color .35s ease;
   }
   .sb-head .label{ font-size:12px; font-weight:600; letter-spacing:0.14em; color:var(--steel); text-transform:uppercase;}
   .sb-dots{ display:flex; gap:6px; }
@@ -140,7 +142,8 @@
 
   .sb-footer{
     display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
-    padding:20px 24px; background:var(--panel-2); border-top:1px solid var(--line);
+    padding:20px 24px; background:var(--team-tint); border-top:1px solid var(--line);
+    transition:background-color .35s ease;
   }
   .status-line{ font-size:13px; color:rgba(33,30,27,0.65); }
   .status-line strong{ color:var(--team-accent-ink); font-weight:600; transition:color .35s ease; }
@@ -480,6 +483,15 @@
     return `rgb(${r},${g},${b})`;
   }
 
+  function mixHex(hex, baseRgb, ratio){
+    const [r,g,b] = hexToRgb(hex);
+    const mr = Math.round(r*ratio + baseRgb[0]*(1-ratio));
+    const mg = Math.round(g*ratio + baseRgb[1]*(1-ratio));
+    const mb = Math.round(b*ratio + baseRgb[2]*(1-ratio));
+    return `rgb(${mr},${mg},${mb})`;
+  }
+  const PANEL_2_BASE = [191,185,173]; // matches --panel-2
+
   function applyTeamTheme(school){
     if(!school || !school.colors) return;
     const root = document.documentElement.style;
@@ -489,6 +501,7 @@
     root.setProperty('--team-accent', accent);
     root.setProperty('--team-on-accent', pickOnColor(accent));
     root.setProperty('--team-accent-ink', darkenForText(inkSource));
+    root.setProperty('--team-tint', mixHex(accent, PANEL_2_BASE, 0.24));
   }
 
   function resetTeamTheme(){
@@ -496,6 +509,7 @@
     root.removeProperty('--team-accent');
     root.removeProperty('--team-on-accent');
     root.removeProperty('--team-accent-ink');
+    root.removeProperty('--team-tint');
   }
 
   function makeChip(container, label, groupKey, swatchColor){
