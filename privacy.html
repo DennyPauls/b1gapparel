@@ -11,21 +11,9 @@
     --ink:#211E1B; --ink-deep:#161310; --paper:#FBF7EE; --panel:#FFFFFF; --panel-2:#F2EBDB;
     --brass:#C89B3C; --brass-ink:#8A6318; --steel:#79705F;
     --line: rgba(33,30,27,0.13);
-    --grain-light:
-      radial-gradient(circle at 30% 30%, rgba(255,255,255,0.85) 0px, rgba(255,255,255,0) 1.6px),
-      radial-gradient(circle at 68% 68%, rgba(122,38,53,0.24) 0px, rgba(122,38,53,0) 2px),
-      radial-gradient(circle at 28% 32%, rgba(255,255,255,0.6) 0px, rgba(255,255,255,0) 1.4px),
-      radial-gradient(circle at 70% 66%, rgba(122,38,53,0.17) 0px, rgba(122,38,53,0) 1.8px);
-    --grain-light-size: 13px 13px, 13px 13px, 17px 17px, 17px 17px;
-    --grain-dark:
-      radial-gradient(circle at 30% 30%, rgba(216,180,130,0.2) 0px, rgba(216,180,130,0) 1.6px),
-      radial-gradient(circle at 68% 68%, rgba(0,0,0,0.5) 0px, rgba(0,0,0,0) 2px),
-      radial-gradient(circle at 28% 32%, rgba(216,180,130,0.14) 0px, rgba(216,180,130,0) 1.4px),
-      radial-gradient(circle at 70% 66%, rgba(0,0,0,0.4) 0px, rgba(0,0,0,0) 1.8px);
-    --grain-dark-size: 13px 13px, 13px 13px, 17px 17px, 17px 17px;
   }
   *{box-sizing:border-box;}
-  body{ margin:0; background-color:var(--paper); background-image:var(--grain-light); background-size:var(--grain-light-size); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
+  body{ margin:0; background-color:var(--paper); background-image:url("/leather-light.png"); background-size:160px 160px; color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
   h1,h2,.display{ font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.02em; margin:0; }
   a{ color:var(--brass-ink); text-decoration:none; }
   a:hover{ text-decoration:underline; }
@@ -33,8 +21,8 @@
   .dark{
     --line: rgba(251,247,238,0.14);
     background-color:var(--ink-deep);
-    background-image: linear-gradient(135deg, rgba(255,255,255,0.035), transparent 45%), var(--grain-dark);
-    background-size: 100% 100%, var(--grain-dark-size);
+    background-image: radial-gradient(ellipse 90% 70% at 50% -10%, rgba(200,110,60,0.14), transparent 60%), url("/leather-dark.png");
+    background-size: 100% 100%, 160px 160px;
     color:var(--paper);
   }
   nav{ position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); }
