@@ -24,9 +24,7 @@
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    background-color:var(--paper);
-    background-image:url("/leather-light.png");
-    background-size:170px 170px;
+    background:var(--paper);
     color:var(--ink);
     font-family:'Inter',sans-serif;
     -webkit-font-smoothing:antialiased;
@@ -44,9 +42,7 @@
   /* dark bookend sections (nav / disclosure / waitlist / footer) */
   .dark{
     --line: rgba(251,247,238,0.14);
-    background-color:var(--ink-deep);
-    background-image: radial-gradient(ellipse 90% 70% at 50% -10%, rgba(200,110,60,0.14), transparent 60%), url("/leather-dark.png");
-    background-size: 100% 100%, 170px 170px;
+    background:var(--ink-deep);
     color:var(--paper);
   }
 
@@ -161,11 +157,7 @@
   .section-head h2{ font-size:clamp(28px,3.4vw,38px); color:var(--ink); }
   .section-head .tag{ font-size:12px; color:var(--steel); font-family:'IBM Plex Mono',monospace; }
 
-  .section-alt{
-    background-color:var(--panel-2);
-    background-image:url("/leather-light.png");
-    background-size:170px 170px;
-  }
+  .section-alt{ background:var(--panel-2); }
 
   .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
   .step{ background:var(--panel); padding:30px 26px; }
@@ -454,9 +446,6 @@
   const sports = ["Football","Basketball","Baseball","Softball","Hockey","Soccer","Volleyball","Wrestling"];
   const categories = ["Jerseys","Hoodies & Fleece","T-Shirts","Hats","Accessories"];
 
-  const featuredNames = ["Texas","Alabama","Georgia","Michigan","Ohio State","Notre Dame","LSU","Texas A&M","Oklahoma","Florida","Tennessee","Auburn","Clemson","USC","Penn State","Florida State","Oregon","Nebraska"];
-  const featuredSchools = featuredNames.map(n => schools.find(s => s.name === n)).filter(Boolean);
-
   const schoolChips = document.getElementById('school-chips');
   const sportChips = document.getElementById('sport-chips');
   const categoryChips = document.getElementById('category-chips');
@@ -493,7 +482,7 @@
   function renderSchoolChips(query){
     schoolChips.innerHTML = '';
     const q = query.trim().toLowerCase();
-    let list = q ? schools.filter(s => s.name.toLowerCase().includes(q)) : featuredSchools;
+    let list = q ? schools.filter(s => s.name.toLowerCase().includes(q)) : schools.slice(0, 10);
     list.slice(0, 24).forEach(s => {
       makeChip(schoolChips, s.name, 'school', s.color);
       if(s.name === state.school){
@@ -503,7 +492,7 @@
     if(!q){
       const hint = document.createElement('div');
       hint.style.cssText = 'font-size:12px; color:var(--steel); width:100%; margin-top:6px;';
-      hint.textContent = `Showing ${featuredSchools.length} of ${schools.length} schools — search to find yours.`;
+      hint.textContent = `Showing 10 of ${schools.length} schools — search to find yours.`;
       schoolChips.appendChild(hint);
     } else if(list.length === 0){
       const hint = document.createElement('div');
