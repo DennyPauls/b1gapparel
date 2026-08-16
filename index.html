@@ -9,20 +9,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#141414;
-    --navy-deep:#0A0A0A;
-    --gold:#1E8FFF;
-    --cream:#F6F3EC;
-    --steel:#6B7280;
-    --white:#FFFFFF;
-    --line: rgba(246,243,236,0.14);
+    --ink:#211E1B;
+    --ink-deep:#161310;
+    --paper:#FBF7EE;
+    --panel:#FFFFFF;
+    --panel-2:#F2EBDB;
+    --brass:#C89B3C;
+    --brass-ink:#8A6318;
+    --oxblood:#7A2635;
+    --steel:#79705F;
+    --line: rgba(33,30,27,0.13);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    background:var(--navy-deep);
-    color:var(--cream);
+    background:var(--paper);
+    color:var(--ink);
     font-family:'Inter',sans-serif;
     -webkit-font-smoothing:antialiased;
   }
@@ -36,54 +39,66 @@
   a{color:inherit;}
   .wrap{ max-width:1180px; margin:0 auto; padding:0 28px; }
 
+  /* dark bookend sections (nav / disclosure / waitlist / footer) */
+  .dark{
+    --line: rgba(251,247,238,0.14);
+    background:var(--ink-deep);
+    color:var(--paper);
+  }
+
   /* NAV */
   nav{
     position:sticky; top:0; z-index:50;
-    background:var(--navy-deep);
     border-bottom:1px solid var(--line);
   }
   nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:72px; }
-  .brand{ display:flex; align-items:center; gap:10px; font-family:'Oswald',sans-serif; font-weight:700; font-size:22px; letter-spacing:0.04em; }
-  .brand .num{ color:var(--gold); }
+  .brand{ display:flex; align-items:center; gap:12px; font-family:'Oswald',sans-serif; font-weight:700; font-size:20px; letter-spacing:0.04em; }
+  .brand-mark{
+    width:34px; height:34px; border-radius:50%; flex:none;
+    border:2px solid var(--brass); background:rgba(200,155,60,0.08);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:var(--brass); letter-spacing:0.02em;
+  }
   .navlinks{ display:flex; gap:32px; font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; }
   .navlinks a{ text-decoration:none; opacity:0.75; transition:opacity .2s; }
   .navlinks a:hover{ opacity:1; }
 
   .disclosure-bar{
-    background:var(--navy); border-bottom:1px solid var(--line);
+    border-bottom:1px solid var(--line);
     padding:9px 0; text-align:center;
   }
   .disclosure-bar .wrap{ display:block; }
   .disclosure-bar p{
-    margin:0; font-size:12.5px; color:rgba(246,243,236,0.7); line-height:1.4;
+    margin:0; font-size:12.5px; color:rgba(251,247,238,0.65); line-height:1.4;
   }
-  .disclosure-bar a{ color:var(--gold); text-decoration:underline; }
+  .disclosure-bar a{ color:var(--brass); text-decoration:underline; }
 
   /* HERO */
   .hero{ padding:88px 0 64px; border-bottom:1px solid var(--line); }
-  .eyebrow{ font-size:13px; font-weight:600; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:18px; }
-  .hero h1{ font-size:clamp(40px,6vw,72px); line-height:0.98; font-weight:700; color:var(--white); }
-  .hero h1 span{ color:var(--gold); }
-  .hero p{ max-width:560px; margin-top:22px; font-size:17px; line-height:1.6; color:rgba(246,243,236,0.7); }
+  .eyebrow{ font-size:13px; font-weight:600; letter-spacing:0.14em; color:var(--brass-ink); text-transform:uppercase; margin-bottom:18px; }
+  .dark .eyebrow{ color:var(--brass); }
+  .hero h1{ font-size:clamp(40px,6vw,72px); line-height:0.98; font-weight:700; color:var(--ink); }
+  .hero h1 span{ color:var(--oxblood); }
+  .hero p{ max-width:560px; margin-top:22px; font-size:17px; line-height:1.6; color:rgba(33,30,27,0.68); }
 
   /* SCOREBOARD */
   .scoreboard{
     margin-top:56px;
-    background:var(--navy);
+    background:var(--panel);
     border:1px solid var(--line);
-    border-radius:4px;
+    border-radius:6px;
     overflow:hidden;
-    box-shadow: 0 30px 80px -30px rgba(0,0,0,0.6);
+    box-shadow: 0 30px 80px -36px rgba(22,19,16,0.28);
   }
   .sb-head{
     display:flex; align-items:center; justify-content:space-between;
     padding:14px 24px;
-    background:var(--navy-deep);
+    background:var(--panel-2);
     border-bottom:1px solid var(--line);
   }
   .sb-head .label{ font-size:12px; font-weight:600; letter-spacing:0.14em; color:var(--steel); text-transform:uppercase;}
   .sb-dots{ display:flex; gap:6px; }
-  .sb-dots span{ width:7px; height:7px; border-radius:50%; background:var(--line); }
+  .sb-dots span{ width:7px; height:7px; border-radius:50%; background:var(--brass); opacity:0.5; }
 
   .sb-readout{
     display:flex; align-items:stretch;
@@ -97,7 +112,7 @@
   .sb-cell .cell-label{ font-size:11px; color:var(--steel); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:10px; }
   .sb-cell .cell-value{
     font-family:'Oswald',sans-serif; font-weight:600; font-size:26px; text-transform:uppercase;
-    color: var(--white);
+    color: var(--ink);
     min-height:32px;
   }
   .sb-cell .cell-value.placeholder{ color:var(--steel); font-weight:400; font-family:'IBM Plex Mono',monospace; font-size:16px; text-transform:none; letter-spacing:0; }
@@ -109,70 +124,75 @@
 
   .chip-grid{ display:flex; flex-wrap:wrap; gap:8px; }
   .chip{
-    appearance:none; border:1px solid var(--line); background:transparent; color:var(--cream);
-    padding:9px 14px; border-radius:3px; font-size:13px; font-weight:500; cursor:pointer;
+    appearance:none; border:1px solid var(--line); background:var(--paper); color:var(--ink);
+    padding:9px 14px; border-radius:20px; font-size:13px; font-weight:500; cursor:pointer;
     display:flex; align-items:center; gap:8px;
     transition: border-color .15s ease, background .15s ease, color .15s ease;
     font-family:'Inter',sans-serif;
   }
   .chip .swatch{ width:9px; height:9px; border-radius:50%; flex:none; }
-  .chip:hover{ border-color: rgba(246,243,236,0.4); }
-  .chip.active{ background:var(--gold); border-color:var(--gold); color:var(--navy-deep); font-weight:700; }
+  .chip:hover{ border-color: var(--brass); }
+  .chip.active{ background:var(--brass); border-color:var(--brass); color:var(--ink-deep); font-weight:700; }
   .chip.active .swatch{ display:none; }
 
   .sb-footer{
     display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
-    padding:20px 24px; background:var(--navy-deep); border-top:1px solid var(--line);
+    padding:20px 24px; background:var(--panel-2); border-top:1px solid var(--line);
   }
-  .status-line{ font-size:13px; color:rgba(246,243,236,0.6); }
-  .status-line strong{ color:var(--gold); font-weight:600; }
+  .status-line{ font-size:13px; color:rgba(33,30,27,0.65); }
+  .status-line strong{ color:var(--brass-ink); font-weight:600; }
   .btn{
     appearance:none; border:none; cursor:pointer; font-family:'Inter',sans-serif;
     padding:13px 26px; border-radius:3px; font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
   }
-  .btn-primary{ background:var(--gold); color:var(--navy-deep); }
-  .btn-primary:disabled{ background:rgba(242,183,5,0.25); color:rgba(8,19,38,0.4); cursor:not-allowed; }
+  .btn-primary{ background:var(--brass); color:var(--ink-deep); }
+  .btn-primary:disabled{ background:rgba(200,155,60,0.3); color:rgba(22,19,16,0.4); cursor:not-allowed; }
   .btn-primary:not(:disabled):hover{ filter:brightness(1.06); }
 
   /* HOW IT WORKS */
   .section{ padding:80px 0; border-bottom:1px solid var(--line); }
   .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap:20px; margin-bottom:44px; flex-wrap:wrap; }
-  .section-head h2{ font-size:clamp(28px,3.4vw,38px); color:var(--white); }
+  .section-head h2{ font-size:clamp(28px,3.4vw,38px); color:var(--ink); }
   .section-head .tag{ font-size:12px; color:var(--steel); font-family:'IBM Plex Mono',monospace; }
 
+  .section-alt{ background:var(--panel-2); }
+
   .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
-  .step{ background:var(--navy-deep); padding:30px 26px; }
-  .step .step-mark{ font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--gold); margin-bottom:16px; }
-  .step h3{ font-size:19px; color:var(--white); font-weight:600; margin-bottom:10px; text-transform:none; letter-spacing:0; }
-  .step p{ font-size:14.5px; line-height:1.6; color:rgba(246,243,236,0.65); margin:0; }
+  .step{ background:var(--panel); padding:30px 26px; }
+  .step .step-mark{ font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--brass-ink); margin-bottom:16px; }
+  .step h3{ font-size:19px; color:var(--ink); font-weight:600; margin-bottom:10px; text-transform:none; letter-spacing:0; }
+  .step p{ font-size:14.5px; line-height:1.6; color:rgba(33,30,27,0.65); margin:0; }
+
+  /* CONFERENCE FILTER */
+  .conf-filter{ margin-bottom:28px; }
 
   /* SCHOOLS GRID */
   .school-grid{ display:grid; grid-template-columns:repeat(6,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
-  .school-tile{ background:var(--navy-deep); padding:20px 14px; display:flex; flex-direction:column; gap:10px; }
+  .school-tile{ background:var(--panel); padding:20px 14px; display:flex; flex-direction:column; gap:10px; }
   .school-tile .bar{ height:4px; border-radius:2px; }
-  .school-tile .name{ font-size:13.5px; font-weight:600; color:var(--cream); }
+  .school-tile .name{ font-size:13.5px; font-weight:600; color:var(--ink); }
   .school-tile .conf{ font-size:11px; color:var(--steel); font-family:'IBM Plex Mono',monospace; }
 
   /* WAITLIST */
   .waitlist{ padding:80px 0; }
   .waitlist-inner{
-    background:var(--navy); border:1px solid var(--line); border-radius:4px;
+    border:1px solid var(--line); border-radius:6px;
     padding:56px 48px; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;
   }
-  .waitlist-inner h2{ font-size:clamp(26px,3.2vw,34px); color:var(--white); max-width:420px; }
+  .waitlist-inner h2{ font-size:clamp(26px,3.2vw,34px); color:var(--paper); max-width:420px; }
   .waitlist-form{ display:flex; gap:10px; flex:1; min-width:280px; max-width:440px; }
   .waitlist-form input{
-    flex:1; background:var(--navy-deep); border:1px solid var(--line); color:var(--cream);
+    flex:1; background:rgba(251,247,238,0.06); border:1px solid var(--line); color:var(--paper);
     padding:13px 16px; border-radius:3px; font-size:14px; font-family:'Inter',sans-serif;
   }
-  .waitlist-form input::placeholder{ color:var(--steel); }
-  .waitlist-note{ font-size:12.5px; color:var(--steel); margin-top:12px; }
-  .confirm{ color:var(--gold); font-size:14px; font-weight:600; display:none; }
+  .waitlist-form input::placeholder{ color:rgba(251,247,238,0.4); }
+  .waitlist-note{ font-size:12.5px; color:rgba(251,247,238,0.5); margin-top:12px; }
+  .confirm{ color:var(--brass); font-size:14px; font-weight:600; display:none; }
 
   footer{ padding:36px 0 44px; }
   footer .wrap{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
-  footer .fine{ font-size:12px; color:var(--steel); line-height:1.6; max-width:640px; }
-  footer .fbrand{ font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:0.04em; color:rgba(246,243,236,0.4); }
+  footer .fine{ font-size:12px; color:rgba(251,247,238,0.5); line-height:1.6; max-width:640px; }
+  footer .fbrand{ font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:0.04em; color:rgba(251,247,238,0.4); }
 
   @media (max-width: 900px){
     .sb-readout{ flex-wrap:wrap; }
@@ -193,9 +213,9 @@
 </head>
 <body>
 
-<nav>
+<nav class="dark">
   <div class="wrap">
-    <div class="brand"><span class="num">LETTERMEN</span>&nbsp;RACK</div>
+    <div class="brand"><span class="brand-mark">LR</span>LETTERMEN&nbsp;RACK</div>
     <div class="navlinks">
       <a href="#picker">Pick Your Gear</a>
       <a href="#schools">Schools</a>
@@ -204,7 +224,7 @@
   </div>
 </nav>
 
-<div class="disclosure-bar">
+<div class="disclosure-bar dark">
   <div class="wrap">
     <p>Lettermen Rack contains affiliate links. We may earn a commission on qualifying purchases at no extra cost to you. <a href="/privacy.html">Learn more</a></p>
   </div>
@@ -212,7 +232,7 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow">College Sports · Fan Apparel</div>
+    <div class="eyebrow">80+ Schools · Every Conference · Every Sport</div>
     <h1>Your school.<br>Your sport.<br><span>Your gear.</span></h1>
     <p>Pick a school, a sport, and a category — Lettermen Rack points you straight to officially licensed fan gear. No hunting across dozens of team stores. One place, every school.</p>
 
@@ -240,7 +260,7 @@
       <div class="sb-body">
         <div class="picker-group">
           <div class="picker-title">01 — Search your school</div>
-          <input type="text" id="school-search" placeholder="Start typing a school name…" style="width:100%; background:var(--navy-deep); border:1px solid var(--line); color:var(--cream); padding:11px 14px; border-radius:3px; font-size:14px; font-family:'Inter',sans-serif; margin-bottom:12px; box-sizing:border-box;">
+          <input type="text" id="school-search" placeholder="Start typing a school name…" style="width:100%; background:var(--paper); border:1px solid var(--line); color:var(--ink); padding:11px 14px; border-radius:3px; font-size:14px; font-family:'Inter',sans-serif; margin-bottom:12px; box-sizing:border-box;">
           <div class="chip-grid" id="school-chips"></div>
         </div>
         <div class="picker-group">
@@ -264,7 +284,7 @@
   </div>
 </header>
 
-<section class="section">
+<section class="section section-alt">
   <div class="wrap">
     <div class="section-head">
       <h2>How it works</h2>
@@ -296,11 +316,12 @@
       <h2>Every school, one place</h2>
       <div class="tag">// 80+ schools and growing</div>
     </div>
+    <div class="chip-grid conf-filter" id="conf-chips"></div>
     <div class="school-grid" id="school-grid"></div>
   </div>
 </section>
 
-<section class="waitlist" id="waitlist">
+<section class="waitlist dark" id="waitlist">
   <div class="wrap">
     <div class="waitlist-inner">
       <div>
@@ -319,14 +340,14 @@
   </div>
 </section>
 
-<footer>
+<footer class="dark">
   <div class="wrap">
     <div>
       <div class="fbrand" style="margin-bottom:10px;">LETTERMEN RACK</div>
       <div style="display:flex; gap:18px; margin-bottom:14px;">
-        <a href="/privacy.html" style="font-size:12px; color:var(--steel); text-decoration:none;">Privacy Policy</a>
-        <a href="/terms.html" style="font-size:12px; color:var(--steel); text-decoration:none;">Terms of Use</a>
-        <a href="/contact.html" style="font-size:12px; color:var(--steel); text-decoration:none;">Contact</a>
+        <a href="/privacy.html" style="font-size:12px; color:rgba(251,247,238,0.6); text-decoration:none;">Privacy Policy</a>
+        <a href="/terms.html" style="font-size:12px; color:rgba(251,247,238,0.6); text-decoration:none;">Terms of Use</a>
+        <a href="/contact.html" style="font-size:12px; color:rgba(251,247,238,0.6); text-decoration:none;">Contact</a>
       </div>
     </div>
     <div class="fine">Lettermen Rack is an independent fan site and is not affiliated with, endorsed by, or sponsored by any school, conference, or athletic association. As an affiliate, Lettermen Rack may earn a commission on qualifying purchases made through links on this site, at no extra cost to you.</div>
@@ -424,6 +445,7 @@
   const sportChips = document.getElementById('sport-chips');
   const categoryChips = document.getElementById('category-chips');
   const schoolGrid = document.getElementById('school-grid');
+  const confChips = document.getElementById('conf-chips');
 
   let state = { school:null, sport:null, category:null };
 
@@ -449,7 +471,6 @@
     container.appendChild(btn);
   }
 
-  schools.forEach(s => makeChip(schoolChips, s.name, 'school', s.color));
   sports.forEach(s => makeChip(sportChips, s, 'sport', null));
   categories.forEach(c => makeChip(categoryChips, c, 'category', null));
 
@@ -478,14 +499,40 @@
   renderSchoolChips('');
   document.getElementById('school-search').addEventListener('input', (e) => renderSchoolChips(e.target.value));
 
-  schools.forEach(s => {
-    const tile = document.createElement('div');
-    tile.className = 'school-tile';
-    tile.innerHTML = `<div class="bar" style="background:${s.color}"></div>
-      <div class="name">${s.name}</div>
-      <div class="conf">${s.conf}</div>`;
-    schoolGrid.appendChild(tile);
-  });
+  const conferences = ['All', ...new Set(schools.map(s => s.conf.split(' · ')[0]))];
+  let activeConf = 'All';
+
+  function renderConfChips(){
+    confChips.innerHTML = '';
+    conferences.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'chip' + (c === activeConf ? ' active' : '');
+      btn.type = 'button';
+      btn.textContent = c;
+      btn.addEventListener('click', () => {
+        activeConf = c;
+        renderConfChips();
+        renderSchoolGrid();
+      });
+      confChips.appendChild(btn);
+    });
+  }
+
+  function renderSchoolGrid(){
+    schoolGrid.innerHTML = '';
+    const list = activeConf === 'All' ? schools : schools.filter(s => s.conf.split(' · ')[0] === activeConf);
+    list.forEach(s => {
+      const tile = document.createElement('div');
+      tile.className = 'school-tile';
+      tile.innerHTML = `<div class="bar" style="background:${s.color}"></div>
+        <div class="name">${s.name}</div>
+        <div class="conf">${s.conf}</div>`;
+      schoolGrid.appendChild(tile);
+    });
+  }
+
+  renderConfChips();
+  renderSchoolGrid();
 
   function updateReadout(){
     const rs = document.getElementById('readout-school');
