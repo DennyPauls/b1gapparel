@@ -19,6 +19,9 @@
     --oxblood:#7A2635;
     --steel:#79705F;
     --line: rgba(33,30,27,0.13);
+    --team-accent: var(--brass);
+    --team-accent-ink: var(--brass-ink);
+    --team-on-accent: var(--ink-deep);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -98,7 +101,7 @@
   }
   .sb-head .label{ font-size:12px; font-weight:600; letter-spacing:0.14em; color:var(--steel); text-transform:uppercase;}
   .sb-dots{ display:flex; gap:6px; }
-  .sb-dots span{ width:7px; height:7px; border-radius:50%; background:var(--brass); opacity:0.5; }
+  .sb-dots span{ width:7px; height:7px; border-radius:50%; background:var(--team-accent); opacity:0.5; transition:background-color .35s ease; }
 
   .sb-readout{
     display:flex; align-items:stretch;
@@ -131,8 +134,8 @@
     font-family:'Inter',sans-serif;
   }
   .chip .swatch{ width:9px; height:9px; border-radius:50%; flex:none; }
-  .chip:hover{ border-color: var(--brass); }
-  .chip.active{ background:var(--brass); border-color:var(--brass); color:var(--ink-deep); font-weight:700; }
+  .chip:hover{ border-color: var(--team-accent); }
+  .chip.active{ background:var(--team-accent); border-color:var(--team-accent); color:var(--team-on-accent); font-weight:700; }
   .chip.active .swatch{ display:none; }
 
   .sb-footer{
@@ -140,12 +143,12 @@
     padding:20px 24px; background:var(--panel-2); border-top:1px solid var(--line);
   }
   .status-line{ font-size:13px; color:rgba(33,30,27,0.65); }
-  .status-line strong{ color:var(--brass-ink); font-weight:600; }
+  .status-line strong{ color:var(--team-accent-ink); font-weight:600; transition:color .35s ease; }
   .btn{
     appearance:none; border:none; cursor:pointer; font-family:'Inter',sans-serif;
     padding:13px 26px; border-radius:3px; font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
   }
-  .btn-primary{ background:var(--brass); color:var(--ink-deep); }
+  .btn-primary{ background:var(--team-accent); color:var(--team-on-accent); transition:background-color .35s ease, color .35s ease; }
   .btn-primary:disabled{ background:rgba(200,155,60,0.3); color:rgba(22,19,16,0.4); cursor:not-allowed; }
   .btn-primary:not(:disabled):hover{ filter:brightness(1.06); }
   .btn-ghost{ background:transparent; border:1px solid var(--line); color:var(--ink); }
@@ -361,86 +364,86 @@
 
 <script>
   const schools = [
-    { name:"Alabama", conf:"SEC · Crimson Tide", color:"#9E1B32" },
-    { name:"Arkansas", conf:"SEC · Razorbacks", color:"#9D2235" },
-    { name:"Auburn", conf:"SEC · Tigers", color:"#0C2340" },
-    { name:"Florida", conf:"SEC · Gators", color:"#0021A5" },
-    { name:"Georgia", conf:"SEC · Bulldogs", color:"#BA0C2F" },
-    { name:"Kentucky", conf:"SEC · Wildcats", color:"#0033A0" },
-    { name:"LSU", conf:"SEC · Tigers", color:"#461D7C" },
-    { name:"Mississippi State", conf:"SEC · Bulldogs", color:"#660000" },
-    { name:"Missouri", conf:"SEC · Tigers", color:"#F1B82D" },
-    { name:"Ole Miss", conf:"SEC · Rebels", color:"#14213D" },
-    { name:"Oklahoma", conf:"SEC · Sooners", color:"#841617" },
-    { name:"South Carolina", conf:"SEC · Gamecocks", color:"#73000A" },
-    { name:"Tennessee", conf:"SEC · Volunteers", color:"#FF8200" },
-    { name:"Texas", conf:"SEC · Longhorns", color:"#BF5700" },
-    { name:"Texas A&M", conf:"SEC · Aggies", color:"#500000" },
-    { name:"Vanderbilt", conf:"SEC · Commodores", color:"#000000" },
-    { name:"Illinois", conf:"Big Ten · Fighting Illini", color:"#E84A27" },
-    { name:"Indiana", conf:"Big Ten · Hoosiers", color:"#990000" },
-    { name:"Iowa", conf:"Big Ten · Hawkeyes", color:"#FFCD00" },
-    { name:"Maryland", conf:"Big Ten · Terrapins", color:"#E21833" },
-    { name:"Michigan", conf:"Big Ten · Wolverines", color:"#FFCB05" },
-    { name:"Michigan State", conf:"Big Ten · Spartans", color:"#18453B" },
-    { name:"Minnesota", conf:"Big Ten · Golden Gophers", color:"#FFCC33" },
-    { name:"Nebraska", conf:"Big Ten · Cornhuskers", color:"#E41C38" },
-    { name:"Northwestern", conf:"Big Ten · Wildcats", color:"#4E2A84" },
-    { name:"Ohio State", conf:"Big Ten · Buckeyes", color:"#BB0000" },
-    { name:"Oregon", conf:"Big Ten · Ducks", color:"#FEE123" },
-    { name:"Penn State", conf:"Big Ten · Nittany Lions", color:"#1E3A6D" },
-    { name:"Purdue", conf:"Big Ten · Boilermakers", color:"#CEB888" },
-    { name:"Rutgers", conf:"Big Ten · Scarlet Knights", color:"#CC0033" },
-    { name:"UCLA", conf:"Big Ten · Bruins", color:"#2D68C4" },
-    { name:"USC", conf:"Big Ten · Trojans", color:"#FFC72C" },
-    { name:"Washington", conf:"Big Ten · Huskies", color:"#B7A57A" },
-    { name:"Wisconsin", conf:"Big Ten · Badgers", color:"#C5050C" },
-    { name:"Boston College", conf:"ACC · Eagles", color:"#98002E" },
-    { name:"California", conf:"ACC · Golden Bears", color:"#003262" },
-    { name:"Clemson", conf:"ACC · Tigers", color:"#F56600" },
-    { name:"Duke", conf:"ACC · Blue Devils", color:"#003087" },
-    { name:"Florida State", conf:"ACC · Seminoles", color:"#782F40" },
-    { name:"Georgia Tech", conf:"ACC · Yellow Jackets", color:"#B3A369" },
-    { name:"Louisville", conf:"ACC · Cardinals", color:"#AD0000" },
-    { name:"Miami", conf:"ACC · Hurricanes", color:"#F47321" },
-    { name:"NC State", conf:"ACC · Wolfpack", color:"#CC0000" },
-    { name:"North Carolina", conf:"ACC · Tar Heels", color:"#7BAFD4" },
-    { name:"Notre Dame", conf:"ACC · Fighting Irish", color:"#0C2340" },
-    { name:"Pittsburgh", conf:"ACC · Panthers", color:"#003594" },
-    { name:"SMU", conf:"ACC · Mustangs", color:"#C8102E" },
-    { name:"Stanford", conf:"ACC · Cardinal", color:"#8C1515" },
-    { name:"Syracuse", conf:"ACC · Orange", color:"#D44500" },
-    { name:"Virginia", conf:"ACC · Cavaliers", color:"#232D4B" },
-    { name:"Virginia Tech", conf:"ACC · Hokies", color:"#630031" },
-    { name:"Wake Forest", conf:"ACC · Demon Deacons", color:"#9E7E38" },
-    { name:"Arizona", conf:"Big 12 · Wildcats", color:"#AB0520" },
-    { name:"Arizona State", conf:"Big 12 · Sun Devils", color:"#8C1D40" },
-    { name:"Baylor", conf:"Big 12 · Bears", color:"#154734" },
-    { name:"BYU", conf:"Big 12 · Cougars", color:"#002E5D" },
-    { name:"Cincinnati", conf:"Big 12 · Bearcats", color:"#E00122" },
-    { name:"Colorado", conf:"Big 12 · Buffaloes", color:"#CFB87C" },
-    { name:"Houston", conf:"Big 12 · Cougars", color:"#C8102E" },
-    { name:"Iowa State", conf:"Big 12 · Cyclones", color:"#C8102E" },
-    { name:"Kansas", conf:"Big 12 · Jayhawks", color:"#0051BA" },
-    { name:"Kansas State", conf:"Big 12 · Wildcats", color:"#512888" },
-    { name:"Oklahoma State", conf:"Big 12 · Cowboys", color:"#FF7300" },
-    { name:"TCU", conf:"Big 12 · Horned Frogs", color:"#4D1979" },
-    { name:"Texas Tech", conf:"Big 12 · Red Raiders", color:"#CC0000" },
-    { name:"UCF", conf:"Big 12 · Knights", color:"#BA9B37" },
-    { name:"Utah", conf:"Big 12 · Utes", color:"#CC0000" },
-    { name:"West Virginia", conf:"Big 12 · Mountaineers", color:"#EAAA00" },
-    { name:"Boise State", conf:"Mountain West · Broncos", color:"#0033A0" },
-    { name:"San Diego State", conf:"Mountain West · Aztecs", color:"#A6192E" },
-    { name:"Air Force", conf:"Mountain West · Falcons", color:"#003087" },
-    { name:"Memphis", conf:"American · Tigers", color:"#003087" },
-    { name:"Tulane", conf:"American · Green Wave", color:"#006747" },
-    { name:"App State", conf:"Sun Belt · Mountaineers", color:"#000000" },
-    { name:"Coastal Carolina", conf:"Sun Belt · Chanticleers", color:"#006F71" },
-    { name:"Navy", conf:"Independent · Midshipmen", color:"#00205B" },
-    { name:"Army", conf:"Independent · Black Knights", color:"#000000" },
-    { name:"Harvard", conf:"Ivy League · Crimson", color:"#A51C30" },
-    { name:"Yale", conf:"Ivy League · Bulldogs", color:"#00356B" },
-    { name:"Princeton", conf:"Ivy League · Tigers", color:"#FF6600" },
+    { name:"Alabama", conf:"SEC · Crimson Tide", color:"#9E1B32", colors:["#9E1B32","#FFFFFF","#828A8C"] },
+    { name:"Arkansas", conf:"SEC · Razorbacks", color:"#9D2235", colors:["#9D2235","#000000","#FFFFFF"] },
+    { name:"Auburn", conf:"SEC · Tigers", color:"#0C2340", colors:["#DD550C","#03244D","#FFFFFF"] },
+    { name:"Florida", conf:"SEC · Gators", color:"#0021A5", colors:["#0021A5","#FA4616","#FFFFFF"] },
+    { name:"Georgia", conf:"SEC · Bulldogs", color:"#BA0C2F", colors:["#BA0C2F","#000000","#FFFFFF"] },
+    { name:"Kentucky", conf:"SEC · Wildcats", color:"#0033A0", colors:["#0033A0","#FFFFFF","#000000"] },
+    { name:"LSU", conf:"SEC · Tigers", color:"#461D7C", colors:["#461D7C","#FDD023","#FFFFFF"] },
+    { name:"Mississippi State", conf:"SEC · Bulldogs", color:"#660000", colors:["#660000","#FFFFFF","#000000"] },
+    { name:"Missouri", conf:"SEC · Tigers", color:"#F1B82D", colors:["#F1B82D","#000000","#FFFFFF"] },
+    { name:"Ole Miss", conf:"SEC · Rebels", color:"#14213D", colors:["#14213D","#CE1126","#FFFFFF"] },
+    { name:"Oklahoma", conf:"SEC · Sooners", color:"#841617", colors:["#841617","#FDF9D8","#FFFFFF"] },
+    { name:"South Carolina", conf:"SEC · Gamecocks", color:"#73000A", colors:["#73000A","#000000","#FFFFFF"] },
+    { name:"Tennessee", conf:"SEC · Volunteers", color:"#FF8200", colors:["#FF8200","#FFFFFF","#000000"] },
+    { name:"Texas", conf:"SEC · Longhorns", color:"#BF5700", colors:["#BF5700","#FFFFFF","#333F48"] },
+    { name:"Texas A&M", conf:"SEC · Aggies", color:"#500000", colors:["#500000","#FFFFFF","#000000"] },
+    { name:"Vanderbilt", conf:"SEC · Commodores", color:"#000000", colors:["#000000","#CFAE70","#FFFFFF"] },
+    { name:"Illinois", conf:"Big Ten · Fighting Illini", color:"#E84A27", colors:["#E84A27","#13294B","#FFFFFF"] },
+    { name:"Indiana", conf:"Big Ten · Hoosiers", color:"#990000", colors:["#990000","#FFFFFF","#000000"] },
+    { name:"Iowa", conf:"Big Ten · Hawkeyes", color:"#FFCD00", colors:["#FFCD00","#000000","#FFFFFF"] },
+    { name:"Maryland", conf:"Big Ten · Terrapins", color:"#E21833", colors:["#E21833","#FFD520","#000000"] },
+    { name:"Michigan", conf:"Big Ten · Wolverines", color:"#FFCB05", colors:["#FFCB05","#00274C","#FFFFFF"] },
+    { name:"Michigan State", conf:"Big Ten · Spartans", color:"#18453B", colors:["#18453B","#FFFFFF","#000000"] },
+    { name:"Minnesota", conf:"Big Ten · Golden Gophers", color:"#FFCC33", colors:["#FFCC33","#7A0019","#FFFFFF"] },
+    { name:"Nebraska", conf:"Big Ten · Cornhuskers", color:"#E41C38", colors:["#E41C38","#FFFFFF","#000000"] },
+    { name:"Northwestern", conf:"Big Ten · Wildcats", color:"#4E2A84", colors:["#4E2A84","#FFFFFF","#000000"] },
+    { name:"Ohio State", conf:"Big Ten · Buckeyes", color:"#BB0000", colors:["#BB0000","#666666","#FFFFFF"] },
+    { name:"Oregon", conf:"Big Ten · Ducks", color:"#FEE123", colors:["#FEE123","#154733","#FFFFFF"] },
+    { name:"Penn State", conf:"Big Ten · Nittany Lions", color:"#1E3A6D", colors:["#1E3A6D","#FFFFFF","#000000"] },
+    { name:"Purdue", conf:"Big Ten · Boilermakers", color:"#CEB888", colors:["#CEB888","#000000","#FFFFFF"] },
+    { name:"Rutgers", conf:"Big Ten · Scarlet Knights", color:"#CC0033", colors:["#CC0033","#FFFFFF","#000000"] },
+    { name:"UCLA", conf:"Big Ten · Bruins", color:"#2D68C4", colors:["#2D68C4","#FFD100","#FFFFFF"] },
+    { name:"USC", conf:"Big Ten · Trojans", color:"#FFC72C", colors:["#990000","#FFC72C","#FFFFFF"] },
+    { name:"Washington", conf:"Big Ten · Huskies", color:"#B7A57A", colors:["#4B2E83","#B7A57A","#FFFFFF"] },
+    { name:"Wisconsin", conf:"Big Ten · Badgers", color:"#C5050C", colors:["#C5050C","#FFFFFF","#000000"] },
+    { name:"Boston College", conf:"ACC · Eagles", color:"#98002E", colors:["#98002E","#BC9B6A","#FFFFFF"] },
+    { name:"California", conf:"ACC · Golden Bears", color:"#003262", colors:["#003262","#FDB515","#FFFFFF"] },
+    { name:"Clemson", conf:"ACC · Tigers", color:"#F56600", colors:["#F56600","#522D80","#FFFFFF"] },
+    { name:"Duke", conf:"ACC · Blue Devils", color:"#003087", colors:["#003087","#FFFFFF","#000000"] },
+    { name:"Florida State", conf:"ACC · Seminoles", color:"#782F40", colors:["#782F40","#CEB888","#FFFFFF"] },
+    { name:"Georgia Tech", conf:"ACC · Yellow Jackets", color:"#B3A369", colors:["#B3A369","#003057","#FFFFFF"] },
+    { name:"Louisville", conf:"ACC · Cardinals", color:"#AD0000", colors:["#AD0000","#000000","#FFFFFF"] },
+    { name:"Miami", conf:"ACC · Hurricanes", color:"#F47321", colors:["#F47321","#005030","#FFFFFF"] },
+    { name:"NC State", conf:"ACC · Wolfpack", color:"#CC0000", colors:["#CC0000","#000000","#FFFFFF"] },
+    { name:"North Carolina", conf:"ACC · Tar Heels", color:"#7BAFD4", colors:["#7BAFD4","#13294B","#FFFFFF"] },
+    { name:"Notre Dame", conf:"ACC · Fighting Irish", color:"#0C2340", colors:["#0C2340","#C99700","#FFFFFF"] },
+    { name:"Pittsburgh", conf:"ACC · Panthers", color:"#003594", colors:["#003594","#FFB81C","#FFFFFF"] },
+    { name:"SMU", conf:"ACC · Mustangs", color:"#C8102E", colors:["#C8102E","#0033A0","#FFFFFF"] },
+    { name:"Stanford", conf:"ACC · Cardinal", color:"#8C1515", colors:["#8C1515","#FFFFFF","#000000"] },
+    { name:"Syracuse", conf:"ACC · Orange", color:"#D44500", colors:["#D44500","#000E54","#FFFFFF"] },
+    { name:"Virginia", conf:"ACC · Cavaliers", color:"#232D4B", colors:["#232D4B","#F84C1E","#FFFFFF"] },
+    { name:"Virginia Tech", conf:"ACC · Hokies", color:"#630031", colors:["#630031","#CF4420","#FFFFFF"] },
+    { name:"Wake Forest", conf:"ACC · Demon Deacons", color:"#9E7E38", colors:["#9E7E38","#000000","#FFFFFF"] },
+    { name:"Arizona", conf:"Big 12 · Wildcats", color:"#AB0520", colors:["#AB0520","#0C234B","#FFFFFF"] },
+    { name:"Arizona State", conf:"Big 12 · Sun Devils", color:"#8C1D40", colors:["#8C1D40","#FFC627","#FFFFFF"] },
+    { name:"Baylor", conf:"Big 12 · Bears", color:"#154734", colors:["#154734","#FFB81C","#FFFFFF"] },
+    { name:"BYU", conf:"Big 12 · Cougars", color:"#002E5D", colors:["#002E5D","#FFFFFF","#000000"] },
+    { name:"Cincinnati", conf:"Big 12 · Bearcats", color:"#E00122", colors:["#E00122","#000000","#FFFFFF"] },
+    { name:"Colorado", conf:"Big 12 · Buffaloes", color:"#CFB87C", colors:["#CFB87C","#000000","#FFFFFF"] },
+    { name:"Houston", conf:"Big 12 · Cougars", color:"#C8102E", colors:["#C8102E","#000000","#FFFFFF"] },
+    { name:"Iowa State", conf:"Big 12 · Cyclones", color:"#C8102E", colors:["#C8102E","#F1BE48","#FFFFFF"] },
+    { name:"Kansas", conf:"Big 12 · Jayhawks", color:"#0051BA", colors:["#0051BA","#E8000D","#FFFFFF"] },
+    { name:"Kansas State", conf:"Big 12 · Wildcats", color:"#512888", colors:["#512888","#FFFFFF","#000000"] },
+    { name:"Oklahoma State", conf:"Big 12 · Cowboys", color:"#FF7300", colors:["#FF7300","#000000","#FFFFFF"] },
+    { name:"TCU", conf:"Big 12 · Horned Frogs", color:"#4D1979", colors:["#4D1979","#FFFFFF","#000000"] },
+    { name:"Texas Tech", conf:"Big 12 · Red Raiders", color:"#CC0000", colors:["#CC0000","#000000","#FFFFFF"] },
+    { name:"UCF", conf:"Big 12 · Knights", color:"#BA9B37", colors:["#BA9B37","#000000","#FFFFFF"] },
+    { name:"Utah", conf:"Big 12 · Utes", color:"#CC0000", colors:["#CC0000","#FFFFFF","#000000"] },
+    { name:"West Virginia", conf:"Big 12 · Mountaineers", color:"#EAAA00", colors:["#EAAA00","#002855","#FFFFFF"] },
+    { name:"Boise State", conf:"Mountain West · Broncos", color:"#0033A0", colors:["#0033A0","#D64309","#FFFFFF"] },
+    { name:"San Diego State", conf:"Mountain West · Aztecs", color:"#A6192E", colors:["#A6192E","#000000","#FFFFFF"] },
+    { name:"Air Force", conf:"Mountain West · Falcons", color:"#003087", colors:["#003087","#8A8D8F","#FFFFFF"] },
+    { name:"Memphis", conf:"American · Tigers", color:"#003087", colors:["#003087","#898D8D","#FFFFFF"] },
+    { name:"Tulane", conf:"American · Green Wave", color:"#006747", colors:["#006747","#00205B","#FFFFFF"] },
+    { name:"App State", conf:"Sun Belt · Mountaineers", color:"#000000", colors:["#000000","#FFCD00","#FFFFFF"] },
+    { name:"Coastal Carolina", conf:"Sun Belt · Chanticleers", color:"#006F71", colors:["#006F71","#000000","#FFFFFF"] },
+    { name:"Navy", conf:"Independent · Midshipmen", color:"#00205B", colors:["#00205B","#C5B783","#FFFFFF"] },
+    { name:"Army", conf:"Independent · Black Knights", color:"#000000", colors:["#000000","#D4BB6C","#FFFFFF"] },
+    { name:"Harvard", conf:"Ivy League · Crimson", color:"#A51C30", colors:["#A51C30","#FFFFFF","#000000"] },
+    { name:"Yale", conf:"Ivy League · Bulldogs", color:"#00356B", colors:["#00356B","#FFFFFF","#000000"] },
+    { name:"Princeton", conf:"Ivy League · Tigers", color:"#FF6600", colors:["#FF6600","#000000","#FFFFFF"] },
   ];
 
   const sports = ["Football","Basketball","Baseball","Softball","Hockey","Soccer","Volleyball","Wrestling"];
@@ -453,6 +456,47 @@
   const confChips = document.getElementById('conf-chips');
 
   let state = { school:null, sport:null, category:null };
+
+  function hexToRgb(hex){
+    const h = hex.replace('#','');
+    return [parseInt(h.substring(0,2),16), parseInt(h.substring(2,4),16), parseInt(h.substring(4,6),16)];
+  }
+  function relLuminance([r,g,b]){
+    const chan = v => { v/=255; return v<=0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4); };
+    return 0.2126*chan(r) + 0.7152*chan(g) + 0.0722*chan(b);
+  }
+  function pickOnColor(hex){
+    return relLuminance(hexToRgb(hex)) > 0.42 ? '#161310' : '#FBF7EE';
+  }
+  function darkenForText(hex){
+    let [r,g,b] = hexToRgb(hex);
+    let lum = relLuminance([r,g,b]);
+    let guard = 0;
+    while(lum > 0.32 && guard < 12){
+      r = Math.round(r*0.85); g = Math.round(g*0.85); b = Math.round(b*0.85);
+      lum = relLuminance([r,g,b]);
+      guard++;
+    }
+    return `rgb(${r},${g},${b})`;
+  }
+
+  function applyTeamTheme(school){
+    if(!school || !school.colors) return;
+    const root = document.documentElement.style;
+    const accent = school.colors[0];
+    const inkSource = school.colors[1] && relLuminance(hexToRgb(school.colors[1])) < relLuminance(hexToRgb(accent))
+      ? school.colors[1] : accent;
+    root.setProperty('--team-accent', accent);
+    root.setProperty('--team-on-accent', pickOnColor(accent));
+    root.setProperty('--team-accent-ink', darkenForText(inkSource));
+  }
+
+  function resetTeamTheme(){
+    const root = document.documentElement.style;
+    root.removeProperty('--team-accent');
+    root.removeProperty('--team-on-accent');
+    root.removeProperty('--team-accent-ink');
+  }
 
   function makeChip(container, label, groupKey, swatchColor){
     const btn = document.createElement('button');
@@ -471,6 +515,10 @@
       [...container.children].forEach(c => c.classList.remove('active'));
       btn.classList.add('active');
       state[groupKey] = label;
+      if(groupKey === 'school'){
+        const school = schools.find(s => s.name === label);
+        applyTeamTheme(school);
+      }
       updateReadout();
     });
     container.appendChild(btn);
@@ -573,6 +621,7 @@
     renderSchoolChips('');
     [...sportChips.children].forEach(c => c.classList.remove('active'));
     [...categoryChips.children].forEach(c => c.classList.remove('active'));
+    resetTeamTheme();
     updateReadout();
   });
 
