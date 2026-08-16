@@ -541,10 +541,13 @@
   sports.forEach(s => makeChip(sportChips, s, 'sport', null));
   categories.forEach(c => makeChip(categoryChips, c, 'category', null));
 
+  const featuredNames = ["Texas","Alabama","Georgia","Michigan","Ohio State","Notre Dame","LSU","Texas A&M","Oklahoma","Florida","Tennessee","Auburn","Clemson","USC","Penn State","Florida State","Oregon","Nebraska"];
+  const featuredSchools = featuredNames.map(n => schools.find(s => s.name === n)).filter(Boolean);
+
   function renderSchoolChips(query){
     schoolChips.innerHTML = '';
     const q = query.trim().toLowerCase();
-    let list = q ? schools.filter(s => s.name.toLowerCase().includes(q)) : schools.slice(0, 10);
+    let list = q ? schools.filter(s => s.name.toLowerCase().includes(q)) : featuredSchools;
     list.slice(0, 24).forEach(s => {
       makeChip(schoolChips, s.name, 'school', s.color);
       if(s.name === state.school){
@@ -554,7 +557,7 @@
     if(!q){
       const hint = document.createElement('div');
       hint.style.cssText = 'font-size:12px; color:var(--steel); width:100%; margin-top:6px;';
-      hint.textContent = `Showing 10 of ${schools.length} schools — search to find yours.`;
+      hint.textContent = `Showing ${featuredSchools.length} of ${schools.length} schools — search to find yours.`;
       schoolChips.appendChild(hint);
     } else if(list.length === 0){
       const hint = document.createElement('div');
