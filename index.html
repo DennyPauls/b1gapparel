@@ -151,9 +151,9 @@
     appearance:none; border:none; cursor:pointer; font-family:'Inter',sans-serif;
     padding:13px 26px; border-radius:3px; font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
   }
-  .btn-primary{ background:var(--team-accent); color:var(--team-on-accent); transition:background-color .35s ease, color .35s ease; }
-  .btn-primary:disabled{ background:rgba(200,155,60,0.3); color:rgba(22,19,16,0.4); cursor:not-allowed; }
-  .btn-primary:not(:disabled):hover{ filter:brightness(1.06); }
+  .btn-primary{ background:var(--team-accent); color:var(--team-on-accent); transition:background-color .35s ease, color .35s ease; text-decoration:none; display:inline-flex; align-items:center; }
+  .btn-primary.is-disabled{ background:rgba(200,155,60,0.3); color:rgba(22,19,16,0.4); cursor:not-allowed; pointer-events:none; }
+  .btn-primary:not(.is-disabled):hover{ filter:brightness(1.06); }
   .btn-ghost{ background:transparent; border:1px solid var(--line); color:var(--ink); }
   .btn-ghost:hover{ border-color:var(--brass); color:var(--brass-ink); }
 
@@ -288,7 +288,7 @@
         </div>
         <div style="display:flex; gap:10px;">
           <button class="btn btn-ghost" id="reset-btn">Reset</button>
-          <button class="btn btn-primary" id="find-btn" disabled>Find Gear</button>
+          <a class="btn btn-primary is-disabled" id="find-btn" href="#picker" aria-disabled="true">Find Gear</a>
         </div>
       </div>
     </div>
@@ -604,6 +604,18 @@
   renderConfChips();
   renderSchoolGrid();
 
+  function getNickname(schoolName){
+    const school = schools.find(s => s.name === schoolName);
+    return school ? school.conf.split(' · ')[1] : '';
+  }
+
+  function buildAffiliateLink(schoolName, schoolNickname, sport, category){
+    const query = `${schoolName} ${schoolNickname} ${sport} ${category}`;
+    const destination = `https://www.fanatics.com/?query=${query}&_ref=p-SRP:m-SEARCH`;
+    const encodedDestination = encodeURIComponent(destination);
+    return `https://fanatics.93n6tx.net/c/7628239/586570/9663?u=${encodedDestination}&partnerpropertyid=8735497&MediaPartnerPropertyId=8735497`;
+  }
+
   function updateReadout(){
     const rs = document.getElementById('readout-school');
     const rp = document.getElementById('readout-sport');
@@ -619,18 +631,24 @@
     rc.classList.toggle('placeholder', !state.category);
 
     if(state.school && state.sport && state.category){
-      btn.disabled = false;
+      const nickname = getNickname(state.school);
+      const url = buildAffiliateLink(state.school, nickname, state.sport, state.category);
+      btn.href = url;
+      btn.target = '_blank';
+      btn.rel = 'noopener sponsored';
+      btn.classList.remove('is-disabled');
+      btn.removeAttribute('aria-disabled');
       status.innerHTML = `Ready — showing <strong>${state.school} ${state.sport} ${state.category}</strong>`;
     } else {
-      btn.disabled = true;
+      btn.href = '#picker';
+      btn.removeAttribute('target');
+      btn.removeAttribute('rel');
+      btn.classList.add('is-disabled');
+      btn.setAttribute('aria-disabled', 'true');
       const remaining = 3 - [state.school,state.sport,state.category].filter(Boolean).length;
       status.textContent = `Make ${remaining} more selection${remaining===1?'':'s'} to find your gear.`;
     }
   }
-
-  document.getElementById('find-btn').addEventListener('click', () => {
-    document.getElementById('waitlist').scrollIntoView({ behavior:'smooth' });
-  });
 
   document.getElementById('reset-btn').addEventListener('click', () => {
     state = { school:null, sport:null, category:null };
