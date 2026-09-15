@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/schools/huskers", "destination": "/schools/nebraska", "permanent": true },
+    { "source": "/schools/huskers/:sport", "destination": "/schools/nebraska/:sport", "permanent": true }
+  ]
+}

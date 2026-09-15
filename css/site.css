@@ -1,0 +1,113 @@
+/* Shared stylesheet for Lettermen Rack SEO landing pages (/schools/...) */
+:root{
+  --ink:#211E1B;
+  --ink-deep:#161310;
+  --paper:#DBCAA0;
+  --panel:#FBF7ED;
+  --panel-2:#EEE0BC;
+  --brass:#C89B3C;
+  --brass-ink:#8A6318;
+  --oxblood:#7A2635;
+  --steel:#79705F;
+  --line: rgba(33,30,27,0.13);
+  --team-accent: var(--brass);
+  --team-on-accent: var(--ink-deep);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3, .display{
+  font-family:'Oswald',sans-serif;
+  text-transform:uppercase;
+  letter-spacing:0.02em;
+  margin:0;
+}
+.mono{ font-family:'IBM Plex Mono',monospace; letter-spacing:0.03em; }
+a{color:inherit;}
+.wrap{ max-width:1180px; margin:0 auto; padding:0 28px; }
+
+.dark{
+  --line: rgba(251,247,238,0.14);
+  background:var(--ink-deep);
+  color:var(--paper);
+}
+
+nav{
+  position:sticky; top:0; z-index:50;
+  border-bottom:1px solid var(--line);
+}
+nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:72px; }
+.brand{ display:flex; align-items:center; gap:12px; font-family:'Oswald',sans-serif; font-weight:700; font-size:20px; letter-spacing:0.04em; text-decoration:none; }
+.brand-mark{
+  width:34px; height:34px; border-radius:50%; flex:none;
+  border:2px solid var(--brass); background:rgba(200,155,60,0.08);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:var(--brass); letter-spacing:0.02em;
+}
+.navlinks{ display:flex; gap:32px; font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; }
+.navlinks a{ text-decoration:none; opacity:0.75; transition:opacity .2s; }
+.navlinks a:hover{ opacity:1; }
+
+.disclosure-bar{
+  border-bottom:1px solid var(--line);
+  padding:9px 0; text-align:center;
+}
+.disclosure-bar .wrap{ display:block; }
+.disclosure-bar p{
+  margin:0; font-size:12.5px; color:rgba(251,247,238,0.65); line-height:1.4;
+}
+.disclosure-bar a{ color:var(--brass); text-decoration:underline; }
+
+/* BREADCRUMB */
+.breadcrumb{ font-size:12px; color:var(--steel); margin-bottom:18px; }
+.breadcrumb a{ text-decoration:underline; }
+.breadcrumb span{ opacity:.6; margin:0 6px; }
+
+/* HUB HERO */
+.hub-hero{ padding:56px 0 48px; border-bottom:1px solid var(--line); }
+.eyebrow{ font-size:13px; font-weight:600; letter-spacing:0.14em; color:var(--brass-ink); text-transform:uppercase; margin-bottom:16px; }
+.hub-hero h1{ font-size:clamp(30px,4.6vw,52px); line-height:1.03; font-weight:700; color:var(--ink); }
+.hub-hero p{ max-width:640px; margin-top:18px; font-size:16px; line-height:1.65; color:rgba(33,30,27,0.7); }
+
+.cta-row{ margin-top:28px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+.btn{
+  appearance:none; border:none; cursor:pointer; font-family:'Inter',sans-serif;
+  padding:14px 28px; border-radius:3px; font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+  text-decoration:none; display:inline-flex; align-items:center;
+}
+.btn-primary{ background:var(--team-accent); color:var(--team-on-accent); }
+.btn-primary:hover{ filter:brightness(1.06); }
+.cta-note{ font-size:12px; color:var(--steel); }
+
+/* SPORT GRID */
+.section{ padding:56px 0; }
+.section-head{ margin-bottom:28px; }
+.section-head h2{ font-size:clamp(22px,2.8vw,30px); color:var(--ink); }
+.sport-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+.sport-link{
+  background:var(--panel); padding:20px 18px; text-decoration:none; color:var(--ink);
+  font-family:'Oswald',sans-serif; font-weight:600; font-size:14px; text-transform:uppercase; letter-spacing:0.02em;
+  display:flex; align-items:center; justify-content:space-between; transition:background .2s ease;
+}
+.sport-link:hover{ background:var(--panel-2); }
+.sport-link .arrow{ color:var(--team-accent); font-family:'Inter',sans-serif; font-weight:700; }
+
+footer{ padding:36px 0 44px; }
+footer .wrap{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+footer .fine{ font-size:12px; color:rgba(251,247,238,0.5); line-height:1.6; max-width:640px; }
+footer .fbrand{ font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:0.04em; color:rgba(251,247,238,0.4); }
+
+@media (max-width: 700px){
+  .sport-grid{ grid-template-columns:repeat(2,1fr); }
+  .navlinks{ display:none; }
+}
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *{ transition:none !important; }
+}

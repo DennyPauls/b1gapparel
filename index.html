@@ -7,6 +7,7 @@
 <title>Lettermen Rack — Gear Up For Your Team</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script src="/js/affiliate.js"></script>
 <style>
   :root{
     --ink:#211E1B;
@@ -180,6 +181,8 @@
   .school-tile .bar{ height:4px; border-radius:2px; }
   .school-tile .name{ font-size:13.5px; font-weight:600; color:var(--ink); }
   .school-tile .conf{ font-size:11px; color:var(--steel); font-family:'IBM Plex Mono',monospace; }
+  .school-tile-link{ text-decoration:none; transition:background .2s ease; }
+  .school-tile-link:hover{ background:var(--panel-2); }
 
   footer{ padding:36px 0 44px; }
   footer .wrap{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
@@ -346,24 +349,24 @@
     { name:"Texas", conf:"SEC · Longhorns", color:"#BF5700", colors:["#BF5700","#FFFFFF","#333F48"] },
     { name:"Texas A&M", conf:"SEC · Aggies", color:"#500000", colors:["#500000","#FFFFFF","#000000"] },
     { name:"Vanderbilt", conf:"SEC · Commodores", color:"#000000", colors:["#000000","#CFAE70","#FFFFFF"] },
-    { name:"Illinois", conf:"Big Ten · Fighting Illini", color:"#E84A27", colors:["#E84A27","#13294B","#FFFFFF"] },
+    { name:"Illinois", conf:"Big Ten · Fighting Illini", color:"#E84A27", colors:["#E84A27","#13294B","#FFFFFF"], hub:"illinois" },
     { name:"Indiana", conf:"Big Ten · Hoosiers", color:"#990000", colors:["#990000","#FFFFFF","#000000"] },
-    { name:"Iowa", conf:"Big Ten · Hawkeyes", color:"#FFCD00", colors:["#FFCD00","#000000","#FFFFFF"] },
+    { name:"Iowa", conf:"Big Ten · Hawkeyes", color:"#FFCD00", colors:["#FFCD00","#000000","#FFFFFF"], hub:"iowa" },
     { name:"Maryland", conf:"Big Ten · Terrapins", color:"#E21833", colors:["#E21833","#FFD520","#000000"] },
-    { name:"Michigan", conf:"Big Ten · Wolverines", color:"#FFCB05", colors:["#FFCB05","#00274C","#FFFFFF"] },
-    { name:"Michigan State", conf:"Big Ten · Spartans", color:"#18453B", colors:["#18453B","#FFFFFF","#000000"] },
-    { name:"Minnesota", conf:"Big Ten · Golden Gophers", color:"#FFCC33", colors:["#FFCC33","#7A0019","#FFFFFF"] },
-    { name:"Nebraska", conf:"Big Ten · Cornhuskers", color:"#E41C38", colors:["#E41C38","#FFFFFF","#000000"] },
-    { name:"Northwestern", conf:"Big Ten · Wildcats", color:"#4E2A84", colors:["#4E2A84","#FFFFFF","#000000"] },
-    { name:"Ohio State", conf:"Big Ten · Buckeyes", color:"#BB0000", colors:["#BB0000","#666666","#FFFFFF"] },
+    { name:"Michigan", conf:"Big Ten · Wolverines", color:"#FFCB05", colors:["#FFCB05","#00274C","#FFFFFF"], hub:"michigan" },
+    { name:"Michigan State", conf:"Big Ten · Spartans", color:"#18453B", colors:["#18453B","#FFFFFF","#000000"], hub:"michigan-state" },
+    { name:"Minnesota", conf:"Big Ten · Golden Gophers", color:"#FFCC33", colors:["#FFCC33","#7A0019","#FFFFFF"], hub:"minnesota" },
+    { name:"Nebraska", conf:"Big Ten · Cornhuskers", color:"#E41C38", colors:["#E41C38","#FFFFFF","#000000"], hub:"nebraska" },
+    { name:"Northwestern", conf:"Big Ten · Wildcats", color:"#4E2A84", colors:["#4E2A84","#FFFFFF","#000000"], hub:"northwestern" },
+    { name:"Ohio State", conf:"Big Ten · Buckeyes", color:"#BB0000", colors:["#BB0000","#666666","#FFFFFF"], hub:"ohio-state" },
     { name:"Oregon", conf:"Big Ten · Ducks", color:"#FEE123", colors:["#FEE123","#154733","#FFFFFF"] },
-    { name:"Penn State", conf:"Big Ten · Nittany Lions", color:"#1E3A6D", colors:["#1E3A6D","#FFFFFF","#000000"] },
+    { name:"Penn State", conf:"Big Ten · Nittany Lions", color:"#1E3A6D", colors:["#1E3A6D","#FFFFFF","#000000"], hub:"penn-state" },
     { name:"Purdue", conf:"Big Ten · Boilermakers", color:"#CEB888", colors:["#CEB888","#000000","#FFFFFF"] },
     { name:"Rutgers", conf:"Big Ten · Scarlet Knights", color:"#CC0033", colors:["#CC0033","#FFFFFF","#000000"] },
     { name:"UCLA", conf:"Big Ten · Bruins", color:"#2D68C4", colors:["#2D68C4","#FFD100","#FFFFFF"] },
     { name:"USC", conf:"Big Ten · Trojans", color:"#FFC72C", colors:["#990000","#FFC72C","#FFFFFF"] },
     { name:"Washington", conf:"Big Ten · Huskies", color:"#B7A57A", colors:["#4B2E83","#B7A57A","#FFFFFF"] },
-    { name:"Wisconsin", conf:"Big Ten · Badgers", color:"#C5050C", colors:["#C5050C","#FFFFFF","#000000"] },
+    { name:"Wisconsin", conf:"Big Ten · Badgers", color:"#C5050C", colors:["#C5050C","#FFFFFF","#000000"], hub:"wisconsin" },
     { name:"Boston College", conf:"ACC · Eagles", color:"#98002E", colors:["#98002E","#BC9B6A","#FFFFFF"] },
     { name:"California", conf:"ACC · Golden Bears", color:"#003262", colors:["#003262","#FDB515","#FFFFFF"] },
     { name:"Clemson", conf:"ACC · Tigers", color:"#F56600", colors:["#F56600","#522D80","#FFFFFF"] },
@@ -555,8 +558,9 @@
     schoolGrid.innerHTML = '';
     const list = activeConf === 'All' ? schools : schools.filter(s => s.conf.split(' · ')[0] === activeConf);
     list.forEach(s => {
-      const tile = document.createElement('div');
-      tile.className = 'school-tile';
+      const tile = document.createElement(s.hub ? 'a' : 'div');
+      tile.className = 'school-tile' + (s.hub ? ' school-tile-link' : '');
+      if(s.hub) tile.href = `/schools/${s.hub}`;
       tile.innerHTML = `<div class="bar" style="background:${s.color}"></div>
         <div class="name">${s.name}</div>
         <div class="conf">${s.conf}</div>`;
@@ -570,13 +574,6 @@
   function getNickname(schoolName){
     const school = schools.find(s => s.name === schoolName);
     return school ? school.conf.split(' · ')[1] : '';
-  }
-
-  function buildAffiliateLink(schoolName, schoolNickname, sport, category){
-    const query = `${schoolName} ${schoolNickname} ${sport} ${category}`;
-    const destination = `https://www.fanatics.com/?query=${query}&_ref=p-SRP:m-SEARCH`;
-    const encodedDestination = encodeURIComponent(destination);
-    return `https://fanatics.93n6tx.net/c/7628239/586570/9663?u=${encodedDestination}&partnerpropertyid=8735497&MediaPartnerPropertyId=8735497`;
   }
 
   function updateReadout(){
