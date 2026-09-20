@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lettermenrack.com/sitemap.xml
+Sitemap: https://www.lettermenrack.com/sitemap.xml

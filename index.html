@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name='impact-site-verification' value='5c67e7c3-af13-4dcf-a278-ae0767d3c569'>
 <title>Lettermen Rack — Gear Up For Your Team</title>
+<meta name="description" content="Lettermen Rack is a multi-school fan gear finder. Pick a school, sport and category and jump to licensed gear on Fanatics. Affiliate site, 80+ schools.">
+<link rel="canonical" href="https://www.lettermenrack.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <script src="/js/affiliate.js"></script>
@@ -172,6 +174,12 @@
   .step h3{ font-size:19px; color:var(--ink); font-weight:600; margin-bottom:10px; text-transform:none; letter-spacing:0; }
   .step p{ font-size:14.5px; line-height:1.6; color:rgba(33,30,27,0.65); margin:0; }
 
+  .schools-note{ margin:0 0 18px; font-size:14px; line-height:1.6; color:rgba(33,30,27,0.7); max-width:640px; }
+  .team-links{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:26px; }
+  .team-links-label{ font-size:12px; font-weight:600; letter-spacing:0.14em; color:var(--steel); text-transform:uppercase; margin-right:6px; }
+  .team-links a{ font-size:13px; font-weight:600; text-decoration:none; padding:7px 13px; border:1px solid var(--line); border-radius:20px; background:var(--panel); transition:border-color .15s ease; }
+  .team-links a:hover{ border-color:var(--brass); }
+
   /* CONFERENCE FILTER */
   .conf-filter{ margin-bottom:28px; }
 
@@ -312,6 +320,20 @@
       <h2>Every school, one place</h2>
       <div class="tag">// 80+ schools and growing</div>
     </div>
+    <p class="schools-note">Lettermen Rack is a multi-school fan gear finder: pick any team and we send you to licensed gear on Fanatics. Links are affiliate links.</p>
+    <nav class="team-links" aria-label="Team gear pages">
+      <span class="team-links-label">Team gear pages</span>
+      <a href="/schools/nebraska">Nebraska</a>
+      <a href="/schools/ohio-state">Ohio State</a>
+      <a href="/schools/michigan">Michigan</a>
+      <a href="/schools/penn-state">Penn State</a>
+      <a href="/schools/iowa">Iowa</a>
+      <a href="/schools/wisconsin">Wisconsin</a>
+      <a href="/schools/illinois">Illinois</a>
+      <a href="/schools/minnesota">Minnesota</a>
+      <a href="/schools/northwestern">Northwestern</a>
+      <a href="/schools/michigan-state">Michigan State</a>
+    </nav>
     <div class="chip-grid conf-filter" id="conf-chips"></div>
     <div class="school-grid" id="school-grid"></div>
   </div>
